@@ -13,12 +13,13 @@ export class App {
   todoItems = ['Learn Angular', 'Build a Todo App', 'Deploy the app']; 
   
   addItem(text: string) {
-    
     if (text.trim() === '') {
       return;
     }
-
-    
     this.todoItems.push(text);
   }
+  deleteItem(itemToDelete: string) {
+    this.todoItems = this.todoItems.filter(item => item !== itemToDelete);
+  }
+
 }
