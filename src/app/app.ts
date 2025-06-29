@@ -11,4 +11,14 @@ export class App {
   protected title = 'angular-todo-app';
 
   todoItems = ['Learn Angular', 'Build a Todo App', 'Deploy the app']; 
+  
+  addItem(text: string) {
+    
+    if (text.trim() === '') {
+      return;
+    }
+
+    
+    this.todoItems.push(text);
+  }
 }

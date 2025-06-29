@@ -1,4 +1,11 @@
 <h1>My To-Do List</h1>
+
+<div class="add-item-form">
+    <input type="text" placeholder="What needs to be done?" #newItem>
+
+    <button (click)="addItem(newItem.value); newItem.value=''">Add</button>
+</div>
+
 @for (item of todoItems; track $index) {
 <app-todo-item [text]="item"></app-todo-item>
 }
