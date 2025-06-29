@@ -10,5 +10,5 @@ import { TodoItem } from './todo-item/todo-item';
 export class App {
   protected title = 'angular-todo-app';
 
-  todoItem = 'Learn Angular'; 
+  todoItems = ['Learn Angular', 'Build a Todo App', 'Deploy the app']; 
 }
