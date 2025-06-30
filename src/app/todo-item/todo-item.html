@@ -1,3 +1,8 @@
-<p>{{ text }}
+<p [ngClass]="{ 'completed': item.completed }">
+
+    <input type="checkbox" [checked]="item.completed" (change)="complete.emit()">
+
+    {{ item.text }}
+
     <button (click)="delete.emit()">Delete</button>
 </p>
