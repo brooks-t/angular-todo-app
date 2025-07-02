@@ -6,7 +6,13 @@
     <button (click)="addItem(newItem.value); newItem.value=''">Add</button>
 </div>
 
-@for (item of todoItems; track $index) {
+<div class="filter-buttons">
+    <button (click)="filter = 'all'" [class.active]="filter === 'all'">All</button>
+    <button (click)="filter = 'active'" [class.active]="filter === 'active'">Active</button>
+    <button (click)="filter = 'completed'" [class.active]="filter === 'completed'">Completed</button>
+</div>
+
+@for (item of filteredItems; track $index) {
 <app-todo-item [item]="item" (delete)="deleteItem(item)" (complete)="toggleComplete(item)"
     (update)="updateItem(item, $event)"></app-todo-item>
 }

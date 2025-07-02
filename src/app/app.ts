@@ -16,6 +16,15 @@ export class App {
     { text: 'Build a Todo App', completed: true },
     { text: 'Deploy the app', completed: false }
   ];
+
+   filter: 'all' | 'active' | 'completed' = 'all';
+
+   get filteredItems() {
+    if (this.filter === 'all') {
+      return this.todoItems;
+    }
+    return this.todoItems.filter(item => this.filter === 'completed' ? item.completed : !item.completed);
+  }
   
   addItem(text: string) {
     if (text.trim() === '') {
