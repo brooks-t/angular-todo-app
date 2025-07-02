@@ -31,6 +31,7 @@ export class App {
       return;
     }
     this.todoItems.push({ text: text, completed: false });
+    this.filter = 'all'; 
   }
   deleteItem(itemToDelete: { text: string, completed: boolean }) {
     this.todoItems = this.todoItems.filter(item => item !== itemToDelete);

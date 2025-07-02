@@ -6,8 +6,10 @@
     <button (click)="startEdit()">Edit</button>
     <button (click)="delete.emit()">Delete</button>
     } @else {
-    <input type="text" [(ngModel)]="editedText">
-    <button (click)="saveEdit()">Save</button>
-    }
+<form (ngSubmit)="saveEdit()">
+    <input type="text" [(ngModel)]="editedText" name="editedText">
+    <button type="submit">Save</button>
+</form>
+}
 
 </p>
