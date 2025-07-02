@@ -1,15 +1,74 @@
+:host {
+  display: block;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+h1 {
+  text-align: center;
+  color: #4a4a4a;
+}
+
+.add-item-form {
+  display: flex;
+  margin-bottom: 1.5rem;
+
+  input[type="text"] {
+    flex-grow: 1;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    font-size: 1rem;
+    &:focus {
+      outline: none;
+      border-color: #7b68ee;
+    }
+  }
+
+  button {
+    padding: 0.75rem 1rem;
+    border: none;
+    background-color: #7b68ee;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #6a5acd;
+    }
+  }
+}
+
 .filter-buttons {
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
 
   button {
     margin-right: 0.5rem;
-    padding: 0.25rem 0.5rem;
-    border: 1px solid #ccc;
-    background-color: #f0f0f0;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
     cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s, border-color 0.2s;
+
+    &:hover {
+      background-color: #f0f0f0;
+      border-color: #ccc;
+    }
 
     &.active {
-      background-color: #e0e0e0;
+      background-color: #7b68ee;
+      color: white;
+      border-color: #7b68ee;
       font-weight: bold;
     }
   }
