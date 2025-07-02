@@ -1,8 +1,13 @@
 <p [ngClass]="{ 'completed': item.completed }">
 
+    @if (!isEditing) {
     <input type="checkbox" [checked]="item.completed" (change)="complete.emit()">
-
     {{ item.text }}
-
+    <button (click)="startEdit()">Edit</button>
     <button (click)="delete.emit()">Delete</button>
+    } @else {
+    <input type="text" [(ngModel)]="editedText">
+    <button (click)="saveEdit()">Save</button>
+    }
+
 </p>

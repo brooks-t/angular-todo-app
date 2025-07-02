@@ -3,6 +3,7 @@ import { TodoItem } from './todo-item/todo-item';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [TodoItem],
   templateUrl: './app.html',
   styleUrl: './app.scss'
@@ -27,5 +28,8 @@ export class App {
   }
   toggleComplete(itemToToggle: { text: string, completed: boolean }) {
     itemToToggle.completed = !itemToToggle.completed;
+  }
+  updateItem(itemToUpdate: { text: string, completed: boolean }, newText: string) {
+    itemToUpdate.text = newText;
   }
 }
