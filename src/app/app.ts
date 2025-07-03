@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TodoService, Todo } from './todo.service';
 import { TodoItem } from './todo-item/todo-item';
 
 @Component({
@@ -6,20 +7,27 @@ import { TodoItem } from './todo-item/todo-item';
   standalone: true,
   imports: [TodoItem],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrls: ['./app.scss']
 })
 export class App {
   protected title = 'angular-todo-app';
 
-  todoItems = this.loadTodoItems();
+  // Use the Todo type for strong typing
+  todoItems: Todo[];
 
   filter: 'all' | 'active' | 'completed' = 'all';
+
+  // Inject the TodoService via the constructor
+  constructor(private todoService: TodoService) {
+    // Initialize todoItems from the service
+    this.todoItems = this.todoService.getTodos();
+  }
 
   get filteredItems() {
     if (this.filter === 'all') {
       return this.todoItems;
     }
-    return this.todoItems.filter((item: { text: string, completed: boolean }) => this.filter === 'completed' ? item.completed : !item.completed);
+    return this.todoItems.filter(item => this.filter === 'completed' ? item.completed : !item.completed);
   }
   
   addItem(text: string) {
@@ -31,36 +39,23 @@ export class App {
     this.filter = 'all'; 
   }
 
-  deleteItem(itemToDelete: { text: string, completed: boolean }) {
-    this.todoItems = this.todoItems.filter((item: { text: string, completed: boolean }) => item !== itemToDelete);
+  deleteItem(itemToDelete: Todo) {
+    this.todoItems = this.todoItems.filter(item => item !== itemToDelete);
     this.saveTodoItems(); 
   }
 
-  toggleComplete(itemToToggle: { text: string, completed: boolean }) {
+  toggleComplete(itemToToggle: Todo) {
     itemToToggle.completed = !itemToToggle.completed;
     this.saveTodoItems();
   }
 
-  updateItem(itemToUpdate: { text: string, completed: boolean }, newText: string) {
+  updateItem(itemToUpdate: Todo, newText: string) {
     itemToUpdate.text = newText;
     this.saveTodoItems(); 
   }
 
-  
-  private loadTodoItems() {
-    const data = localStorage.getItem('todoItems');
-    if (data) {
-      return JSON.parse(data);
-    }
-    
-    return [
-      { text: 'Learn Angular', completed: false },
-      { text: 'Build a Todo App', completed: true },
-      { text: 'Deploy the app', completed: false }
-    ];
-  }
-  
+  // Use the service to save todos
   private saveTodoItems() {
-    localStorage.setItem('todoItems', JSON.stringify(this.todoItems));
+    this.todoService.saveTodos(this.todoItems);
   }
 }
