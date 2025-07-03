@@ -32,7 +32,7 @@ export class App {
   }
 
   deleteItem(itemToDelete: { text: string, completed: boolean }) {
-    this.todoItems = this.todoItems.filter(item => item !== itemToDelete);
+    this.todoItems = this.todoItems.filter((item: { text: string, completed: boolean }) => item !== itemToDelete);
     this.saveTodoItems(); 
   }
 
