@@ -7,7 +7,7 @@ export interface Todo {
 }
 
 @Injectable({
-  providedIn: 'root' // This makes the service available app-wide
+  providedIn: 'root', // This makes the service available app-wide
 })
 export class TodoService {
   // Load todos from local storage or use defaults
@@ -19,7 +19,7 @@ export class TodoService {
     return [
       { text: 'Learn Angular', completed: false },
       { text: 'Build a Todo App', completed: true },
-      { text: 'Deploy the app', completed: false }
+      { text: 'Deploy the app', completed: false },
     ];
   }
 
